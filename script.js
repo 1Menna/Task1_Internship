@@ -23,10 +23,11 @@ function display(){
     var cartona = [];
     for(var i=0; i<list.length ; i++){
         cartona += 
-        `   <li> 
-                <h2>${list[i].task}</h2>
-                <p>${list[i].des}</p>
-            </li>
+        `   <tr> 
+                <td>${list[i].task}</td>
+                <td>${list[i].des}</td>
+                <td><button>Delete</button></td>
+            </tr>
         `
     }
     var L = document.getElementById("taskList");
