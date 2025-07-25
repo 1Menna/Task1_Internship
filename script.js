@@ -26,8 +26,8 @@ function display(){
         `   <tr> 
                 <td id="${'title'+i}">${list[i].task}</td>
                 <td id="${'des'+i}">${list[i].des}</td>
-                <td id="${'edit'+i}"><button onclick="editTask(${i})">Edit</button></td>
-                <td id="${'del'+i}"><button>Delete</button></td>
+                <td id="${'edit'+i}"><button onclick="editTask(${i})" class='blue'>Edit</button></td>
+                <td id="${'del'+i}"><button class='red'>Delete</button></td>
             </tr>
         `
     }
