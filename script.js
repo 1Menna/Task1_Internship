@@ -10,6 +10,11 @@ function addTask(){
     value1 = task.value;
     value2 = description.value;
 
+    if (!value1) {
+        window.alert('Title is empty');
+        return;
+    }
+
     var obj = {
         task : value1,
         des : value2
