@@ -22,6 +22,7 @@ function addTask() {
 
     list.push(obj);
     display();
+    clear()
     saveToLocal();
 }
 
@@ -43,6 +44,10 @@ function display() {
     L.innerHTML = cartona;
 }
 
+function clear(){
+    task.value= null;
+    description.value= null;
+}
 function confirmUpdate(id) {
     // list[id].task = document.getElementById("titleUpdate").value;
     // list[id].des= document.getElementById("desUpdate").value;
