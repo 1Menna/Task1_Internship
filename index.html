@@ -5,6 +5,11 @@
   <title>To Do List</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link href="/css/fontawesome.css" rel="stylesheet" />
+  <link href="/css/brands.css" rel="stylesheet" />
+  <link href="/css/solid.css" rel="stylesheet" />
+  <link href="/css/sharp-thin.css" rel="stylesheet" />
+  <link href="/css/sharp-duotone-thin.css" rel="stylesheet" />
 </head>
 <body>
   <div class="header">
@@ -12,7 +17,7 @@
     <div class="input-container">
       <input type="text" id="taskTitle" placeholder="Task title..." aria-label="Task title">
       <input type="text" id="taskDescription" placeholder="Description (optional)" aria-label="Task description">
-      <button onclick="addTask()" class="blue">Add Task</button>
+      <button onclick="addTask()" class="blue"><i class="fa-solid fa-plus"></i></button>
     </div>
   </div>
   <table class="task-list">

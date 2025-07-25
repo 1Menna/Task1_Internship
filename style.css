@@ -14,7 +14,6 @@ button {
     border-radius: 4px;
     margin: 4px;
     font-size: 24px;
-
 }
 
 h1 {
@@ -28,6 +27,9 @@ td {
 button {
     cursor: pointer;
     border: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
 }
 
 button.red {

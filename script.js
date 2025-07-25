@@ -34,8 +34,8 @@ function display() {
                 <td id="completed${i}"><input type="checkbox" name="completed${i}" id="completed${i}_check" onchange="completeTask(${i})"></td>
                 <td id="${'title' + i}">${list[i].task}</td>
                 <td id="${'des' + i}">${list[i].des}</td>
-                <td id="${'edit' + i}"><button onclick="editTask(${i})" class='blue'>Edit</button></td>
-                <td id="${'del' + i}"><button class='red'>Delete</button></td>
+                <td id="${'edit' + i}"><button onclick="editTask(${i})" class='blue'><i class="fa-solid fa-pen"></i></button></td>
+                <td id="${'del' + i}"><button class='red'><i class="fa-solid fa-trash"></i></button></td>
             </tr>
         `
     }
@@ -68,8 +68,8 @@ function editTask(id) {
 
     titleUp.innerHTML = `<input type="text" id="titleUpdate" value="${list[id].task}">`;
     desUp.innerHTML = `<input type="text" id="desUpdate" value="${list[id].des}">`;
-    confirmBtn.innerHTML = `<button onclick="confirmUpdate(${id})">Confirm</button>`;
-    cancelBtn.innerHTML = `<button onclick="display()">Cancel</button>`;
+    confirmBtn.innerHTML = `<button onclick="confirmUpdate(${id})" class='green'><i class="fa-solid fa-check"></i></button>`;
+    cancelBtn.innerHTML = `<button onclick="display()" class='red'><i class="fa-solid fa-xmark"></i></button>`;
 }
 
 function deleteTask(id) {
