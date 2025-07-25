@@ -62,3 +62,8 @@ function editTask(id){
     confirmBtn.innerHTML = `<button onclick="confirmUpdate(${id})">Confirm</button>`;
     cancelBtn.innerHTML = `<button onclick="display()">Cancel</button>`;
 }
+
+function deleteTask(id) {
+    list.splice(id, 1); // Remove task at index `id`
+    display();          // Refresh task list
+}
