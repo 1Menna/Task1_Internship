@@ -35,7 +35,7 @@ function display() {
                 <td id="${'title' + i}">${list[i].task}</td>
                 <td id="${'des' + i}">${list[i].des}</td>
                 <td id="${'edit' + i}"><button onclick="editTask(${i})" class='blue'><i class="fa-solid fa-pen"></i></button></td>
-                <td id="${'del' + i}"><button class='red'><i class="fa-solid fa-trash"></i></button></td>
+                <td id="${'del' + i}"><button class='red' onclick="deleteTask(${i})"><i class="fa-solid fa-trash"></i></button></td>
             </tr>
         `
     }
@@ -79,7 +79,7 @@ function deleteTask(id) {
 }
 
 function completeTask(id){
-    console.log(id);
+    //console.log(id);
     
     const element = document.getElementById('row'+id);
     const checkbox = document.getElementById(`completed${id}_check`);
