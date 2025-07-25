@@ -5,7 +5,7 @@ var description = document.getElementById("taskDescription");
 
 var list = [];
 
-function addTask(){
+function addTask() {
 
     value1 = task.value;
     value2 = description.value;
@@ -16,23 +16,26 @@ function addTask(){
     }
 
     var obj = {
-        task : value1,
-        des : value2
+        task: value1,
+        des: value2
     };
 
     list.push(obj);
     display();
+    saveToLocal();
 }
 
-function display(){
+function display() {
     var cartona = [];
-    for(var i=0; i<list.length ; i++){
-        cartona += 
-        `   <tr> 
-                <td id="${'title'+i}">${list[i].task}</td>
-                <td id="${'des'+i}">${list[i].des}</td>
-                <td id="${'edit'+i}"><button onclick="editTask(${i})" class='blue'>Edit</button></td>
-                <td id="${'del'+i}"><button class='red'>Delete</button></td>
+    for (var i = 0; i < list.length; i++) {
+        cartona +=
+            `   
+            <tr id='row${i}'> 
+                <td id="completed${i}"><input type="checkbox" name="completed${i}" id="completed${i}_check" onchange="completeTask(${i})"></td>
+                <td id="${'title' + i}">${list[i].task}</td>
+                <td id="${'des' + i}">${list[i].des}</td>
+                <td id="${'edit' + i}"><button onclick="editTask(${i})" class='blue'>Edit</button></td>
+                <td id="${'del' + i}"><button class='red'>Delete</button></td>
             </tr>
         `
     }
@@ -40,7 +43,7 @@ function display(){
     L.innerHTML = cartona;
 }
 
-function confirmUpdate (id) {
+function confirmUpdate(id) {
     // list[id].task = document.getElementById("titleUpdate").value;
     // list[id].des= document.getElementById("desUpdate").value;
     // console.log(list); for checking
@@ -55,12 +58,13 @@ function confirmUpdate (id) {
     list = updatedTasks;
     // console.log(updatedTasks);
     display();
+    saveToLocal();
 }
-function editTask(id){
-    const titleUp = document.getElementById('title'+id);
-    const desUp = document.getElementById('des'+id);
-    const confirmBtn = document.getElementById('edit'+id);
-    const cancelBtn = document.getElementById('del'+id);
+function editTask(id) {
+    const titleUp = document.getElementById('title' + id);
+    const desUp = document.getElementById('des' + id);
+    const confirmBtn = document.getElementById('edit' + id);
+    const cancelBtn = document.getElementById('del' + id);
 
     titleUp.innerHTML = `<input type="text" id="titleUpdate" value="${list[id].task}">`;
     desUp.innerHTML = `<input type="text" id="desUpdate" value="${list[id].des}">`;
@@ -70,5 +74,34 @@ function editTask(id){
 
 function deleteTask(id) {
     list.splice(id, 1); // Remove task at index `id`
-    display();          // Refresh task list
+    display(); 
+    saveToLocal();         // Refresh task list
 }
+
+function completeTask(id){
+    console.log(id);
+    
+    const element = document.getElementById('row'+id);
+    const checkbox = document.getElementById(`completed${id}_check`);
+
+    if (checkbox.checked) {
+        element.classList.add('completed');
+    }
+    else {
+        element.classList.remove('completed');
+    }
+}
+
+function saveToLocal() {
+    localStorage.setItem('storedTodo',JSON.stringify(list));
+}
+
+function loadFromLocal() {
+    let stored = localStorage.getItem('storedTodo');
+    if (stored){
+        list = JSON.parse(stored);
+        display();
+    }
+}
+
+loadFromLocal();
