@@ -17,7 +17,8 @@ function addTask() {
 
     var obj = {
         task: value1,
-        des: value2
+        des: value2,
+        isCompleted: false
     };
 
     list.push(obj);
@@ -27,12 +28,17 @@ function addTask() {
 }
 
 function display() {
+    // console.log(list);
     var cartona = [];
     for (var i = 0; i < list.length; i++) {
+        const completedClass = list[i].isCompleted ? "class='completed'" : "";
+        const checkedAttribute = list[i].isCompleted ? "checked" : "";
         cartona +=
             `   
-            <tr id='row${i}'> 
-                <td id="completed${i}"><input type="checkbox" name="completed${i}" id="completed${i}_check" onchange="completeTask(${i})"></td>
+                <tr id='row${i}' ${completedClass}>
+                <td id="completed${i}">
+                    <input type="checkbox" name="completed${i}" ${checkedAttribute} id="completed${i}_check" onchange="completeTask(${i})">
+                </td>
                 <td id="${'title' + i}">${list[i].task}</td>
                 <td id="${'des' + i}">${list[i].des}</td>
                 <td id="${'edit' + i}"><button onclick="editTask(${i})" class='blue'><i class="fa-solid fa-pen"></i></button></td>
@@ -49,19 +55,19 @@ function clear(){
     description.value= null;
 }
 function confirmUpdate(id) {
-    // list[id].task = document.getElementById("titleUpdate").value;
-    // list[id].des= document.getElementById("desUpdate").value;
-    // console.log(list); for checking
     const titleUp = document.getElementById("titleUpdate");
     const desUp = document.getElementById("desUpdate");
+
+    // list[id].task =titleUp.value;
+    // list[id].des=desUp.value;
+
     const updatedTasks = list.map((task, i) => {
         if (i === id) {
-            return { task: titleUp.value, des: desUp.value };
+            return { ...task, task: titleUp.value, des: desUp.value };
         }
         return task;
     });
     list = updatedTasks;
-    // console.log(updatedTasks);
     display();
     saveToLocal();
 }
@@ -91,10 +97,13 @@ function completeTask(id){
 
     if (checkbox.checked) {
         element.classList.add('completed');
+        list[id].isCompleted=true;
     }
     else {
         element.classList.remove('completed');
+        list[id].isCompleted=false;
     }
+    saveToLocal();
 }
 
 function saveToLocal() {
